@@ -38,6 +38,7 @@ public class WelcomeMenu {
         System.out.printf("%s%n%n", "3. Exit");
         System.out.print("Enter Choice: ");
 
+        // Todo: add try-catch in-case user enters something other than a number.
         switch (Integer.parseInt(Utility.getInput())) {
             case 1:
                 RegistrationMenu reg = new RegistrationMenu(userMessage, user);
