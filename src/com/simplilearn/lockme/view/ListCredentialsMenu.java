@@ -5,6 +5,8 @@ import com.simplilearn.lockme.model.User;
 import com.simplilearn.lockme.service.CredentialService;
 import com.simplilearn.lockme.service.Utility;
 
+import java.util.HashSet;
+
 /**
  * Created: 08/29/2021 - 2:04 PM
  * Project: LockMe
@@ -27,7 +29,10 @@ public class ListCredentialsMenu implements Menu {
 
         // todo: sort locker in alphabetical order
         CredentialService credSrv = new CredentialService(user);
-        for (Credential cred : credSrv.list()) {
+        HashSet<Credential> credentials = credSrv.list();
+        Credential[] arr = credentials.toArray(new Credential[credentials.size()]);
+        Utility.sort(arr);
+        for (Credential cred : arr) {
             System.out.println("Site: " + cred.getSiteName());
             System.out.println("Username: " + cred.getUserName());
             System.out.println("Password: " + cred.getPassword());
