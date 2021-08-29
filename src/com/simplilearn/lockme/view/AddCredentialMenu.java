@@ -28,7 +28,7 @@ public class AddCredentialMenu implements Menu {
         Header header = new Header(menuName, user);
         header.show();
 
-        System.out.print("Enter Sitename:");
+        System.out.print("Enter Sitename: ");
         credential.setSiteName(Utility.getInput());
         System.out.print("Enter Username: ");
         credential.setUserName(Utility.getInput());

@@ -38,7 +38,8 @@ public class OptionMenu implements Menu {
                 listMenu.show();
                 break;
             case 2:
-                System.out.println("Searching Creds");
+                SearchCredentialsMenu searchMenu = new SearchCredentialsMenu(user);
+                searchMenu.show();
                 break;
             case 3:
                 AddCredentialMenu addMenu = new AddCredentialMenu(user);

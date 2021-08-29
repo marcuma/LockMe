@@ -2,6 +2,7 @@ package com.simplilearn.lockme.service;
 
 import com.simplilearn.lockme.model.Credential;
 import com.simplilearn.lockme.model.User;
+import com.simplilearn.lockme.model.UserMessage;
 import com.simplilearn.lockme.repository.CredentialRepositoryImpl;
 
 import javax.security.auth.login.CredentialNotFoundException;
@@ -23,17 +24,18 @@ public class CredentialService {
 
     public CredentialService(User USER) {
         this.USER = USER;
-        this.fileName = getFILENAME();
+        this.fileName = getFileName();
         credential = null;
     }
 
     public CredentialService(User user, Credential credential) {
         this.credential = credential;
         this.USER = user;
-        this.fileName = getFILENAME();
+        this.fileName = getFileName();
         locker = new HashSet<Credential>();
     }
 
+    // todo methodize getObject calls
     public void save() {
         repo = new CredentialRepositoryImpl(fileName, locker);
         locker = (HashSet<Credential>) repo.getObject();
@@ -47,7 +49,21 @@ public class CredentialService {
         return locker;
     }
 
-    private String getFILENAME() {
+    public Credential searchLocker(String siteName) {
+        repo = new CredentialRepositoryImpl(fileName, locker);
+        locker = (HashSet<Credential>) repo.getObject();
+        for (Credential cred : locker) {
+            if (cred.getSiteName().toLowerCase().equals(siteName.toLowerCase())) {
+                return cred;
+            } else {
+                UserMessage.setUserMessage("Credential not found.");
+            }
+
+        }
+        return null;
+    }
+
+    private String getFileName() {
         return this.fileName = this.USER.getLoginName() + ".db";
     }
 }
