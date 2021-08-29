@@ -16,21 +16,38 @@ import java.util.HashSet;
 public class CredentialService {
     private final Credential credential;
     private final User USER;
-    private final String FILENAME;
+    private  String fileName;
     private  HashSet<Credential> locker;
+    private CredentialRepositoryImpl repo;
 
+
+    public CredentialService(User USER) {
+        this.USER = USER;
+        this.fileName = getFILENAME();
+        credential = null;
+    }
 
     public CredentialService(User user, Credential credential) {
         this.credential = credential;
         this.USER = user;
-        this.FILENAME = user.getLoginName() + ".db";
+        this.fileName = getFILENAME();
         locker = new HashSet<Credential>();
     }
 
     public void save() {
-        CredentialRepositoryImpl repo = new CredentialRepositoryImpl(FILENAME, locker);
+        repo = new CredentialRepositoryImpl(fileName, locker);
         locker = (HashSet<Credential>) repo.getObject();
         locker.add(this.credential);
         repo.save();
+    }
+
+    public HashSet<Credential> list() {
+        repo = new CredentialRepositoryImpl(fileName, locker);
+        locker = (HashSet<Credential>) repo.getObject();
+        return locker;
+    }
+
+    private String getFILENAME() {
+        return this.fileName = this.USER.getLoginName() + ".db";
     }
 }

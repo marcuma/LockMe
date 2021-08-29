@@ -34,14 +34,15 @@ public class OptionMenu implements Menu {
         // TODO: add logic here
         switch (Integer.parseInt(Utility.getInput())) {
             case 1:
-                System.out.println("Listing creds");
+                ListCredentialsMenu listMenu = new ListCredentialsMenu(user);
+                listMenu.show();
                 break;
             case 2:
                 System.out.println("Searching Creds");
                 break;
             case 3:
-                AddCredentialMenu menu = new AddCredentialMenu(user);
-                menu.show();
+                AddCredentialMenu addMenu = new AddCredentialMenu(user);
+                addMenu.show();
                 break;
             case 4:
                 System.out.println("deleting cred");
