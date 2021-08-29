@@ -1,6 +1,7 @@
 package com.simplilearn.lockme.service;
 
 import com.simplilearn.lockme.model.User;
+import com.simplilearn.lockme.model.UserMessage;
 import com.simplilearn.lockme.repository.UserRepositoryImpl;
 
 import java.io.FileNotFoundException;
@@ -35,6 +36,12 @@ public class RegistrationService {
          */
         UserRepositoryImpl repo = new UserRepositoryImpl(users);
         users = (HashSet<User>) repo.getObject();
+        for (User user : users) {
+            if (this.user.getLoginName().equals(user.getLoginName())) {
+                UserMessage.setUserMessage("Username already exists.");
+                break;
+            }
+        }
         users.add(user);
         repo.save();
     }
