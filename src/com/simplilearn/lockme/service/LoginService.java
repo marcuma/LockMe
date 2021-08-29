@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class LoginService {
     private User user;
     private Repository repo;
-    HashSet<User> users;
+    private HashSet<User> users;
 
     public LoginService(User user) {
         this.user = user;

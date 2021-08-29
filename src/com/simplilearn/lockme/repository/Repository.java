@@ -31,7 +31,6 @@ public abstract class Repository {
             fin = new FileInputStream(file);
             oin = new ObjectInputStream(fin);
             object = oin.readObject();
-            System.out.println(object);
         } catch (FileNotFoundException ex) {
             save();
             getObject();

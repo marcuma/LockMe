@@ -2,6 +2,7 @@ package com.simplilearn.lockme.view;
 
 import com.simplilearn.lockme.model.User;
 import com.simplilearn.lockme.model.UserMessage;
+import com.simplilearn.lockme.service.CredentialService;
 import com.simplilearn.lockme.service.Utility;
 
 /**
@@ -39,7 +40,8 @@ public class OptionMenu implements Menu {
                 System.out.println("Searching Creds");
                 break;
             case 3:
-                System.out.println("adding creds");
+                AddCredentialMenu menu = new AddCredentialMenu(user);
+                menu.show();
                 break;
             case 4:
                 System.out.println("deleting cred");
