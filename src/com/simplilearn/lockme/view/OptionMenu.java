@@ -46,7 +46,8 @@ public class OptionMenu implements Menu {
                 addMenu.show();
                 break;
             case 4:
-                System.out.println("deleting cred");
+                DeleteCredentialsMenu delMenu = new DeleteCredentialsMenu(user);
+                delMenu.show();
                 break;
             case 5:
                 user.setLoggedIn(false);

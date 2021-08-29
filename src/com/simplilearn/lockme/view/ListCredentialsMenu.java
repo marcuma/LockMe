@@ -33,7 +33,8 @@ public class ListCredentialsMenu implements Menu {
             System.out.println("Password: " + cred.getPassword());
             System.out.println();
         }
-
+        if (credSrv.list().size() == 0)
+            System.out.println("Your locker is empty. Add some credentials.");
         System.out.println("Press any key to continue");
         Utility.getInput();
 

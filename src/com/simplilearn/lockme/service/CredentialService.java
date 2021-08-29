@@ -43,6 +43,19 @@ public class CredentialService {
         repo.save();
     }
 
+    public void delete(String siteName) {
+        repo = new CredentialRepositoryImpl(fileName, locker);
+        locker = (HashSet<Credential>) repo.getObject();
+        for (Credential cred : locker) {
+            if (cred.getSiteName().toLowerCase().equals(siteName)) {
+                locker.remove(cred);
+            } else {
+                UserMessage.setUserMessage("Credential " + siteName + " does not exist");
+            }
+        }
+        repo.save();
+    }
+
     public HashSet<Credential> list() {
         repo = new CredentialRepositoryImpl(fileName, locker);
         locker = (HashSet<Credential>) repo.getObject();
@@ -56,7 +69,7 @@ public class CredentialService {
             if (cred.getSiteName().toLowerCase().equals(siteName.toLowerCase())) {
                 return cred;
             } else {
-                UserMessage.setUserMessage("Credential not found.");
+                UserMessage.setUserMessage("Credential " + siteName + "not found.");
             }
 
         }
