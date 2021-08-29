@@ -16,6 +16,8 @@ public class LoginService {
     private User user;
     private Repository repo;
     private HashSet<User> users;
+    private final String adminUserName = "admin";
+    private final String adminPassword = "simplilearn123";
 
     public LoginService(User user) {
         this.user = user;
