@@ -1,6 +1,8 @@
 package com.simplilearn.lockme.view;
 
 import com.simplilearn.lockme.model.User;
+import com.simplilearn.lockme.model.UserMessage;
+import com.simplilearn.lockme.service.LoginService;
 import com.simplilearn.lockme.service.Utility;
 
 /**
@@ -11,17 +13,15 @@ import com.simplilearn.lockme.service.Utility;
  */
 public class LoginMenu implements Menu {
     private final String menuName = "Login Menu";
-    private String userMessage;
     private final User user;
 
-    public LoginMenu(String userMessage, User user) {
-        this.userMessage = userMessage;
+    public LoginMenu(User user) {
         this.user = user;
     }
 
     @Override
     public void show() {
-        Header header = new Header(menuName, userMessage, user);
+        Header header = new Header(menuName, user);
         header.show();
 
         //TODO: read from user files and verify credentials are correct.
@@ -30,7 +30,12 @@ public class LoginMenu implements Menu {
         System.out.print("Enter Password: ");
         user.setPasswd(Utility.getInput());
 
-        user.setLoggedIn(true);
+        LoginService loginService = new LoginService(user);
+        if (loginService.authenticate()) {
+            user.setLoggedIn(true);
+        } else {
+            UserMessage.setUserMessage("Incorrect username or password");
+        }
 
     }
 }

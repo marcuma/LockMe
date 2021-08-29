@@ -20,8 +20,8 @@ public class Application {
         User user = new User();
         String userMessage = "";
         String menuName = "Welcome Menu";
-        WelcomeMenu welcomeView = new WelcomeMenu(userMessage, user);
-        Menu optionView = new OptionMenu(userMessage, user);
+        WelcomeMenu welcomeView = new WelcomeMenu(user);
+        Menu optionView = new OptionMenu(user);
 
         while (!welcomeView.isExit()) {
             if (user.isLoggedIn()) {

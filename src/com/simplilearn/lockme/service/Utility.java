@@ -1,5 +1,8 @@
 package com.simplilearn.lockme.service;
 
+import com.simplilearn.lockme.model.User;
+
+import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -17,4 +20,19 @@ public final class Utility {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

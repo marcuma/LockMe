@@ -1,6 +1,7 @@
 package com.simplilearn.lockme.view;
 
 import com.simplilearn.lockme.model.User;
+import com.simplilearn.lockme.model.UserMessage;
 import com.simplilearn.lockme.service.Utility;
 
 /**
@@ -12,16 +13,14 @@ import com.simplilearn.lockme.service.Utility;
 public class OptionMenu implements Menu {
     private final String menuName = "Option Menu";
     private final User user;
-    private String userMessage;
 
-    public OptionMenu(String userMessage, User user) {
+    public OptionMenu(User user) {
         this.user = user;
-        this.userMessage = userMessage;
     }
 
     @Override
     public void show() {
-        Header header = new Header(menuName, userMessage, user);
+        Header header = new Header(menuName, user);
         header.show();
         System.out.printf("%s%n", "1. List All Credentials");
         System.out.printf("%s%n", "2. Search Credentials");
@@ -49,7 +48,7 @@ public class OptionMenu implements Menu {
                 user.setLoggedIn(false);
                 break;
             default:
-                userMessage = "Invalid Choice";
+                UserMessage.setUserMessage("Invalid Choice");
         }
 
     }
