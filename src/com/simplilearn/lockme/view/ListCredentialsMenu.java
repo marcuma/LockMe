@@ -25,6 +25,7 @@ public class ListCredentialsMenu implements Menu {
         Header header = new Header(menuName, user);
         header.show();
 
+        // todo: sort locker in alphabetical order
         CredentialService credSrv = new CredentialService(user);
         for (Credential cred : credSrv.list()) {
             System.out.println("Site: " + cred.getSiteName());
