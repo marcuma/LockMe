@@ -34,11 +34,10 @@ public class LoginService {
           if (inputUser.equals(user.getLoginName()) &&
               inputPassword.equals(user.getPasswd())) {
 
+              this.user.setUserName(user.getUserName());
               return true;
           }
       }
-
-
         return false;
     }
 

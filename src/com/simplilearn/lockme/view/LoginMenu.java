@@ -24,7 +24,6 @@ public class LoginMenu implements Menu {
         Header header = new Header(menuName, user);
         header.show();
 
-        //TODO: read from user files and verify credentials are correct.
         System.out.print("Enter Username: ");
         user.setLoginName(Utility.getInput());
         System.out.print("Enter Password: ");

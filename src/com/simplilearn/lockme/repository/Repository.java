@@ -32,10 +32,14 @@ public abstract class Repository {
             oin = new ObjectInputStream(fin);
             object = oin.readObject();
             System.out.println(object);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (FileNotFoundException ex) {
+            save();
+            getObject();
         } catch (ClassNotFoundException cnf) {
             cnf.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+
         } finally {
             if (fin != null) {
                 try {

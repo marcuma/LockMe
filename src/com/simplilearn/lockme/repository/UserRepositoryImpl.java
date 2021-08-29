@@ -11,16 +11,16 @@ import java.util.HashSet;
  * @author marcuma
  */
 public class UserRepositoryImpl extends Repository {
-    private String fileName = "users.db";
+    private final String FILENAME = "users.db";
 
     public UserRepositoryImpl(HashSet<User> users) {
         super(users);
-        super.file = fileName;
+        super.file = FILENAME;
     }
 
     public UserRepositoryImpl() {
         super();
-        super.file = fileName;
+        super.file = FILENAME;
     }
 
 
