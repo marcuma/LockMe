@@ -26,7 +26,8 @@ public final class Utility {
 
         for (int lastIndex = credentials.length - 1; lastIndex > 0; lastIndex--) {
             for(int i = 0; i < lastIndex; i++) {
-                if (credentials[i].getSiteName().compareTo(credentials[i + 1].getSiteName()) > -1) {
+                if (credentials[i].getSiteName().toUpperCase().compareTo(
+                        credentials[i + 1].getSiteName().toUpperCase()) > -1) {
                     swap(credentials, i, i + 1);
                 }
             }

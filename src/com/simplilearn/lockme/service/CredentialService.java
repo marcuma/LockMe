@@ -46,12 +46,18 @@ public class CredentialService {
     public void delete(String siteName) {
         repo = new CredentialRepositoryImpl(fileName, locker);
         locker = (HashSet<Credential>) repo.getObject();
+        boolean credFound = false;
+        Credential tempCred = null;
         for (Credential cred : locker) {
             if (cred.getSiteName().toLowerCase().equals(siteName)) {
-                locker.remove(cred);
+                credFound = true;
+                tempCred = cred;
             } else {
                 UserMessage.setUserMessage("Credential " + siteName + " does not exist");
             }
+        }
+        if (credFound) {
+            locker.remove(tempCred);
         }
         repo.save();
     }

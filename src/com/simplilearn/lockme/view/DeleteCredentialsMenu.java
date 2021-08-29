@@ -32,6 +32,7 @@ public class DeleteCredentialsMenu implements Menu {
         CredentialService credSrv = new CredentialService(user);
         Credential cred = credSrv.searchLocker(siteName);
         credSrv.delete(siteName);
+        UserMessage.setUserMessage("");
 
 
 
